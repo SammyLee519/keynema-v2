@@ -1,1 +1,109 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  /* ===== 컬러 ===== */
+  --color-primary: #ff1a66;
+  --color-primary-hover: #e6135c;
+  --color-error: #ff4444;
+
+  /* gray scale */
+  --color-gray-900: #1a1c20;
+  --color-gray-800: #353a42;
+  --color-gray-700: #515764;
+  --color-gray-600: #6c7585;
+  --color-gray-500: #8d94a2;
+  --color-gray-400: #aeb3be;
+  --color-gray-300: #d0d3d9;
+  --color-gray-200: #f2f3f4;
+  --color-gray-100: #ffffff;
+
+  /* 배경 */
+  --color-bg-base: #1a1c20;
+  --color-bg-card: rgba(26, 28, 32, 0.9);
+  --color-bg-overlay-menu: rgba(26, 28, 32, 0.2);
+  --color-bg-input: rgba(255, 255, 255, 0.1);
+  --color-bg-input-focus: rgba(255, 255, 255, 0.15);
+
+  /* 텍스트 */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-placeholder: rgba(255, 255, 255, 0.4);
+  --color-text-disabled: rgba(255, 255, 255, 0.3);
+
+  /* 보더 */
+  --color-border-default: #aeb3be;
+  --color-border-subtle: rgba(255, 255, 255, 0.3);
+
+  /* 그라데이션 */
+  --gradient-section: linear-gradient(-350deg, #ff1a66 0%, #353a42 32%);
+  --gradient-overlay: linear-gradient(
+    220deg,
+    rgba(255, 26, 102, 0.3) 0%,
+    rgba(26, 28, 32, 0.3) 54%
+  );
+
+  /* ===== 타이포그래피 ===== */
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-banner: 40px; /* 이미지 배너 내부 큰 글씨 - ExtraBold */
+  --text-title: 26px; /* 타이틀 - ExtraBold */
+  --text-subtitle: 24px; /* 소제목 - SemiBold */
+  --text-body: 20px; /* 본문 - Medium */
+  --text-small: 16px; /* 작은글씨(평점/더보기) - Regular */
+
+  --font-extrabold: 800;
+  --font-semibold: 600;
+  --font-medium: 500;
+  --font-regular: 400;
+
+  /* ===== 아이콘 ===== */
+  --size-icon: 28px;
+
+  /* ===== 보더 라디우스 ===== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 20px;
+
+  /* ===== 그림자 ===== */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+  /* ===== 블러 ===== */
+  --blur-menu: 25px;
+
+  /* ===== 버튼 ===== */
+  --btn-height: 32px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: var(--gradient-overlay);
+  pointer-events: none;
+  z-index: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
