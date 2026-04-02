@@ -50,6 +50,7 @@
   --text-subtitle: 24px; /* 소제목 - SemiBold */
   --text-body: 20px; /* 본문 - Medium */
   --text-small: 16px; /* 작은글씨(평점/더보기) - Regular */
+  --text-xsmall: 14px; /* 더작은글씨 - Light*/
 
   --font-extrabold: 800;
   --font-semibold: 600;
@@ -77,8 +78,6 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
