@@ -13,7 +13,7 @@ const LoginPage = lazy(() => import('@/pages/LoginPage'))
 const SearchPage = lazy(() => import('@/pages/SearchPage'))
 const MovieDetailPage = lazy(() => import('@/pages/MovieDetailPage'))
 const MyPage = lazy(() => import('@/pages/MyPage'))
-const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'))
+const NotFoundPage = lazy(() => import('@/pages/NotFoundPage.tsx'))
 
 const withSuspense = (Component: React.ComponentType) => (
   <Suspense fallback={<PageLoader />}>
