@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 import { HEADER_HEIGHT } from '@/constants'
 
-import Footer from './Footer'
+import Footer from './footer'
 import Header from './header'
 import SideMenu from './sidemenu'
 
