@@ -1,9 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 // src/router/index.tsx
 import { lazy, Suspense } from 'react'
-import { createBrowserRouter, Outlet } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 
 import { PageLoader } from '@/components'
+import Layout from '@/components/layout/Layout'
 import { ROUTES } from '@/constants'
 
 const DevPage = lazy(() => import('@/pages/DevPage'))
@@ -23,10 +24,12 @@ const withSuspense = (Component: React.ComponentType) => (
 export const router = createBrowserRouter([
   {
     path: ROUTES.HOME,
-    element: <Outlet />, // 나중에 Layout으로 교체
+    element: <Layout />,
     children: [
       { index: true, element: withSuspense(HomePage) },
-      { path: 'dev', element: withSuspense(DevPage) },
+      ...(import.meta.env.DEV
+        ? [{ path: 'dev', element: withSuspense(DevPage) }]
+        : []),
       { path: ROUTES.SEARCH, element: withSuspense(SearchPage) },
       { path: ROUTES.MOVIE_DETAIL, element: withSuspense(MovieDetailPage) },
       { path: ROUTES.MY_PAGE, element: withSuspense(MyPage) },

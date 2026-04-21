@@ -5,7 +5,11 @@ import { NAV_ITEMS, ROUTES } from '@/constants'
 
 import HeaderUser from './HeaderUser'
 
-export default function Header() {
+type HeaderProps = {
+  onMenuToggle: () => void
+}
+
+export default function Header({ onMenuToggle }: HeaderProps) {
   return (
     <header className="fixed top-0 right-0 left-0 flex h-18 items-center justify-between px-[100px]">
       <div className="flex gap-20">
@@ -22,7 +26,8 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <HeaderUser />
+
+      <HeaderUser onMenuToggle={onMenuToggle} />
     </header>
   )
 }
