@@ -10,6 +10,7 @@ const buttonVariants = cva(
       variant: {
         primary:
           'bg-primary text-text-primary rounded-md hover:bg-primary-hover active:scale-95 disabled:bg-gray-400 disabled:hover:bg-gray-400',
+        secondary: 'bg-bg-input rounded-md hover:bg-bg-input-focus',
         outline:
           'border border-gray-400 text-gray-400 rounded-md hover:border-primary hover:text-primary disabled:border-gray-400 disabled:text-gray-400',
         pill: 'rounded-pill border border-border-subtle text-text-secondary hover:border-primary hover:text-text-primary data-[active=true]:bg-primary data-[active=true]:border-primary data-[active=true]:text-text-primary data-[active=true]:font-semibold disabled:border-gray-400 disabled:text-gray-400',
