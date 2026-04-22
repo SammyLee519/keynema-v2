@@ -42,6 +42,19 @@
     rgba(26, 28, 32, 0.3) 54%
   );
 
+  /* Toast */
+  --color-success: #22c55e;
+  --color-success-bg: rgba(34, 197, 94, 0.12);
+  --color-success-border: rgba(34, 197, 94, 0.4);
+
+  --color-error: #ff4444;
+  --color-error-bg: rgba(255, 68, 68, 0.12);
+  --color-error-border: rgba(255, 68, 68, 0.4);
+
+  --color-info: #3b82f6;
+  --color-info-bg: rgba(59, 130, 246, 0.12);
+  --color-info-border: rgba(59, 130, 246, 0.4);
+
   /* ===== 타이포그래피 ===== */
   --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 

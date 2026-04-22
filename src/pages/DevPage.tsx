@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import profileImage from '@/assets/profile_image.png'
 import { Avatar, Button, Input, StarRating, TabMenu } from '@/components'
+import { showToast } from '@/utils/toast'
 
 export const TAB_ITEM = [
   { value: 'info', label: '기본정보' },
@@ -92,6 +93,19 @@ export default function DevPage() {
             onChange={(e) => setQuery(e.target.value)}
             onClear={() => setQuery('')}
           />
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2>Toast</h2>
+        <div className="flex gap-3">
+          <Button onClick={() => showToast.success('성공!')}>Success</Button>
+          <Button variant="outline" onClick={() => showToast.error('실패!')}>
+            Error
+          </Button>
+          <Button variant="ghost" onClick={() => showToast.info('알림!')}>
+            Info
+          </Button>
         </div>
       </section>
     </div>
