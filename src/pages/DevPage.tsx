@@ -1,14 +1,26 @@
 import { useState } from 'react'
 
+import posterPath from '@/assets/poster-1.png'
 import profileImage from '@/assets/profile_image.png'
-import { Avatar, Button, Input, StarRating, TabMenu } from '@/components'
+import {
+  Avatar,
+  Button,
+  Input,
+  MovieCard,
+  StarRating,
+  TabMenu,
+} from '@/components'
 import { showToast } from '@/utils/toast'
 
-export const TAB_ITEM = [
+const TAB_ITEM = [
   { value: 'info', label: '기본정보' },
   { value: 'rating', label: '평점' },
   { value: 'ott', label: 'OTT정보' },
   { value: 'spoiler', label: '스포일러' },
+]
+
+const MOVIE_ITEM = [
+  { title: '악마는 프라다를 입는다', posterPath: posterPath, rating: 4.7 },
 ]
 
 export default function DevPage() {
@@ -106,6 +118,21 @@ export default function DevPage() {
           <Button variant="ghost" onClick={() => showToast.info('알림!')}>
             Info
           </Button>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2>MovieCard</h2>
+        <div className="flex items-start gap-4">
+          {MOVIE_ITEM.map((movie) => (
+            <MovieCard
+              key={movie.title}
+              title={movie.title}
+              posterPath={movie.posterPath}
+              rating={movie.rating}
+              className="h-[387px] w-[270px]"
+            />
+          ))}
         </div>
       </section>
     </div>
