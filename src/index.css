@@ -1,6 +1,11 @@
 @import 'tailwindcss';
+@import 'pretendard/dist/web/static/pretendard.css';
 
 @theme {
+  /* ===== 폰트:프리탠다드 ===== */
+  --font-family-sans:
+    'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+
   /* ===== 컬러 ===== */
   --color-primary: #ff1a66;
   --color-primary-hover: #e6135c;
