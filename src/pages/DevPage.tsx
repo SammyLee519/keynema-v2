@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import profileImage from '@/assets/profile_image.png'
-import { Avatar, Button, StarRating, TabMenu } from '@/components'
+import { Avatar, Button, Input, StarRating, TabMenu } from '@/components'
 
 export const TAB_ITEM = [
   { value: 'info', label: '기본정보' },
@@ -13,6 +13,7 @@ export const TAB_ITEM = [
 export default function DevPage() {
   const [starValue, setStarValue] = useState(0)
   const [tab, setTab] = useState(TAB_ITEM[0].value)
+  const [query, setQuery] = useState('')
 
   return (
     <div className="flex flex-col gap-8 p-10">
@@ -72,6 +73,26 @@ export default function DevPage() {
       <section className="flex flex-col gap-3">
         <h2>TabMenu</h2>
         <TabMenu tabs={TAB_ITEM} value={tab} onValueChange={setTab} />
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2>Input</h2>
+        <div className="flex gap-5">
+          <Input
+            variant="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onClear={() => setQuery('')}
+            placeholder="제목, 영화, 장르"
+          />
+          <Input
+            variant="underline"
+            placeholder="이름을 입력하세요"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onClear={() => setQuery('')}
+          />
+        </div>
       </section>
     </div>
   )
