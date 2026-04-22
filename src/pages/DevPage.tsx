@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import { Button, StarRating } from '@/components'
+import profileImage from '@/assets/profile_image.png'
+import { Avatar, Button, StarRating } from '@/components'
 
 export default function DevPage() {
   const [starValue, setStarValue] = useState(0)
@@ -49,6 +50,14 @@ export default function DevPage() {
 
           {/* readOnly */}
           <StarRating value={3.5} readOnly onChange={setStarValue} />
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2>Avatar</h2>
+        <div className="flex items-center gap-3">
+          <Avatar src={profileImage} />
+          <Avatar />
         </div>
       </section>
     </div>
