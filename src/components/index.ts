@@ -1,3 +1,4 @@
 export { Button } from './common/button/Button'
 export { Spinner } from './common/spinner/Spinner'
 export { PageLoader } from './common/page-loader/PageLoader'
+export { StarRating } from './common/star-rating/StarRating'

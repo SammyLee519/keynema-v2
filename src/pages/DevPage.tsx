@@ -1,6 +1,10 @@
-import { Button } from '@/components'
+import { useState } from 'react'
+
+import { Button, StarRating } from '@/components'
 
 export default function DevPage() {
+  const [starValue, setStarValue] = useState(0)
+
   return (
     <div className="flex flex-col gap-8 p-10">
       <section className="flex flex-col gap-3">
@@ -30,6 +34,21 @@ export default function DevPage() {
         <div className="flex gap-3">
           <Button disabled>Disabled</Button>
           <Button isLoading>Loading</Button>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2>StarRating</h2>
+        <div className="flex flex-col gap-3">
+          {/* 인터랙티브 */}
+          <StarRating
+            value={starValue}
+            readOnly={false}
+            onChange={setStarValue}
+          />
+
+          {/* readOnly */}
+          <StarRating value={3.5} readOnly onChange={setStarValue} />
         </div>
       </section>
     </div>
