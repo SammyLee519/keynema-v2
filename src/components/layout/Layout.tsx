@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import { Toaster } from 'sonner'
 
 import { HEADER_HEIGHT } from '@/constants'
 
@@ -18,6 +19,7 @@ export default function Layout() {
       </main>
       <Footer />
       <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <Toaster position="top-right" offset={20} />
     </div>
   )
 }
