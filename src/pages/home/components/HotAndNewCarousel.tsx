@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 import filmStrip from '@/assets/subtract.png'
 import { CarouselNavButton, SectionTitle } from '@/components'
-import { ROUTES } from '@/constants'
+import { PAGE_PADDING_X, ROUTES } from '@/constants'
 import { useCarousel } from '@/hooks'
 import { MOCK_MOVIES } from '@/mocks/movie'
 import { getStatusBadge } from '@/utils/badge'
@@ -33,8 +33,13 @@ export default function HotAndNewCarousel() {
           className="absolute inset-0 h-full w-full object-cover opacity-40"
         />
 
-        <div className="relative left-25 z-10">
-          <div className="overflow-hidden" ref={emblaRef}>
+        {/* overflow-hidden 밖에 relative 감싸기 */}
+        <div className="relative z-10 mt-1">
+          <div
+            className="overflow-hidden"
+            ref={emblaRef}
+            style={{ paddingLeft: PAGE_PADDING_X }}
+          >
             <div className="flex gap-5">
               {MOCK_MOVIES.map((movie) => (
                 <HotAndNewCard
@@ -42,27 +47,26 @@ export default function HotAndNewCarousel() {
                   backdropPath={movie.backdrop_path}
                   title={movie.title}
                   badge={getStatusBadge(movie.release_date)}
+                  onClick={() => navigate(ROUTES.MOVIE_DETAIL)}
                 />
               ))}
             </div>
           </div>
 
-          {canScrollPrev && (
-            <CarouselNavButton
-              onClick={goToPrev}
-              direction="prev"
-              disabled={!canScrollPrev}
-              className="absolute top-1/2 left-0 z-20 -translate-y-1/2"
-            />
-          )}
-          {canScrollNext && (
-            <CarouselNavButton
-              onClick={goToNext}
-              direction="next"
-              disabled={!canScrollNext}
-              className="absolute top-1/2 right-40 z-20 -translate-y-1/2"
-            />
-          )}
+          {/* 버튼은 overflow-hidden 밖에 */}
+          <CarouselNavButton
+            onClick={goToPrev}
+            direction="prev"
+            disabled={!canScrollPrev}
+            className="absolute top-1/2 z-20 -translate-y-1/2"
+            style={{ left: PAGE_PADDING_X - 24 }}
+          />
+          <CarouselNavButton
+            onClick={goToNext}
+            direction="next"
+            disabled={!canScrollNext}
+            className="absolute top-1/2 right-5 z-20 -translate-y-1/2"
+          />
         </div>
       </section>
     </>

@@ -2,6 +2,7 @@ import Autoplay from 'embla-carousel-autoplay'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
+import fallback from '@/assets/fallback.png'
 import { ROUTES } from '@/constants'
 import { useCarousel } from '@/hooks'
 import { MOCK_MOVIES } from '@/mocks/movie'
@@ -11,6 +12,9 @@ import { cn } from '@/utils/cn'
 
 export default function HeroBanner() {
   const navigate = useNavigate()
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = fallback
+  }
   const { emblaRef, selectedIndex, goToPrev, goToNext, scrollTo } = useCarousel(
     {
       options: {
@@ -53,6 +57,8 @@ export default function HeroBanner() {
                   src={movie.backdrop_path}
                   alt={movie.title}
                   className="h-full w-full object-cover"
+                  loading="lazy"
+                  onError={handleError}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/64 to-transparent" />
 
