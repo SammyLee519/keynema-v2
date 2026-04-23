@@ -17,14 +17,14 @@ export default function UpcomingCarousel() {
 
   return (
     <section>
-      <div className="mt-5 px-25">
+      <div className="mt-10 px-25">
         <SectionTitle
           title={HOME_SECTION_TITLES.UPCOMING}
           onMoreClick={() => navigate(ROUTES.HOME)}
         />
       </div>
 
-      <div className="relative mt-5">
+      <div className="relative mt-2">
         <div
           className="overflow-hidden"
           ref={emblaRef}

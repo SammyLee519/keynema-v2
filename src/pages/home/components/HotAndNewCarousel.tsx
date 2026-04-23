@@ -25,12 +25,12 @@ export default function HotAndNewCarousel() {
         className="mt-25 px-25"
       />
 
-      <section className="relative py-8">
+      <section className="relative mt-3 py-8">
         <img
           src={filmStrip}
           alt="필름배경"
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
+          className="absolute inset-0 h-full w-full object-contain opacity-40"
         />
 
         {/* overflow-hidden 밖에 relative 감싸기 */}
