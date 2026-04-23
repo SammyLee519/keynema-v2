@@ -1,9 +1,12 @@
 import HeroBanner from './components/HeroBanner'
+import HotAndNewCarousel from './components/HotAndNewCarousel'
 
 export default function HomePage() {
   return (
-    <div>
+    <main className="flex flex-col">
       <HeroBanner />
-    </div>
+
+      <HotAndNewCarousel />
+    </main>
   )
 }
