@@ -1,68 +1,56 @@
 import Autoplay from 'embla-carousel-autoplay'
-import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
-import { useCallback, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import { ROUTES } from '@/constants'
+import { useCarousel } from '@/hooks'
 import { MOCK_MOVIES } from '@/mocks/movie'
 import { cn } from '@/utils/cn'
 
 // TODO: API 연결 예정
 
 export default function HeroBanner() {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: 'center', slidesToScroll: 1, duration: 20 },
-    [Autoplay({ delay: 4000, stopOnInteraction: false })]
+  const navigate = useNavigate()
+  const { emblaRef, selectedIndex, goToPrev, goToNext, scrollTo } = useCarousel(
+    {
+      options: {
+        loop: false,
+        align: 'center',
+        duration: 25,
+        containScroll: false,
+      },
+      plugins: [
+        Autoplay({
+          delay: 4000,
+          stopOnInteraction: false,
+          stopOnMouseEnter: true,
+        }),
+      ],
+    }
   )
 
-  const [selectedIndex, setSelectedIndex] = useState(0)
-
-  const goToPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
-  const goToNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
-
-  useEffect(() => {
-    if (!emblaApi) return
-
-    const onSelect = () => {
-      const index = emblaApi.selectedScrollSnap()
-
-      setSelectedIndex(index)
-
-      // 마지막 슬라이드면 첫 번째로
-      if (index === MOCK_MOVIES.length - 1) {
-        setTimeout(() => {
-          emblaApi.scrollTo(0)
-        }, 4000)
-      }
-    }
-
-    emblaApi.on('select', onSelect)
-
-    return () => {
-      emblaApi.off('select', onSelect)
-    }
-  }, [emblaApi])
-
   return (
-    <div className="relative top-16 w-full">
+    <section className="relative top-5 w-full">
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           {MOCK_MOVIES.map((movie, index) => {
             const isActive = selectedIndex === index
 
             const cardStyle = isActive
               ? 'scale-100 blur-none opacity-100'
-              : 'scale-[0.82] blur-sm opacity-60 blur-sm'
+              : 'scale-90 opacity-50'
 
             return (
               <div
                 key={movie.id}
+                onClick={() => navigate(ROUTES.MOVIE_DETAIL)}
                 className={cn(
-                  'relative aspect-16/7 w-[1254px] shrink-0 overflow-hidden rounded-4xl transition-all duration-300',
+                  'relative aspect-16/7 w-[1254px] shrink-0 overflow-hidden rounded-4xl transition-all',
                   cardStyle
                 )}
               >
                 <img
-                  src={movie.backdropPath}
+                  src={movie.backdrop_path}
                   alt={movie.title}
                   className="h-full w-full object-cover"
                 />
@@ -70,12 +58,12 @@ export default function HeroBanner() {
 
                 {isActive && (
                   <div className="absolute bottom-10 left-10">
-                    <h3 className="font-medium text-2xl text-white italic">
-                      {movie.tagline}
-                    </h3>
-                    <h2 className="text-whilte text-[60px] font-bold">
+                    <h2 className="mb-1 text-5xl font-bold text-white md:mb-3">
                       {movie.title}
                     </h2>
+                    <h3 className="max-w-[55%] text-base text-white italic">
+                      {movie.overview}
+                    </h3>
                   </div>
                 )}
               </div>
@@ -102,7 +90,7 @@ export default function HeroBanner() {
         {MOCK_MOVIES.map((_, index) => (
           <button
             key={index}
-            onClick={() => emblaApi?.scrollTo(index)}
+            onClick={() => scrollTo(index)}
             className={cn(
               'rounded-full transition-all duration-300',
               selectedIndex === index
@@ -112,6 +100,6 @@ export default function HeroBanner() {
           />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
