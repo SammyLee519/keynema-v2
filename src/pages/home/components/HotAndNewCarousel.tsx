@@ -7,7 +7,7 @@ import { useCarousel } from '@/hooks'
 import { MOCK_MOVIES } from '@/mocks/movie'
 import { getStatusBadge } from '@/utils/badge'
 
-import { HOME_SECTION_TITLES } from '../constants'
+import { HOME_SECTION_TITLES } from '../constants/title'
 import HotAndNewCard from './HotAndNewCard'
 
 export default function HotAndNewCarousel() {
@@ -33,7 +33,6 @@ export default function HotAndNewCarousel() {
           className="absolute inset-0 h-full w-full object-contain opacity-40"
         />
 
-        {/* overflow-hidden 밖에 relative 감싸기 */}
         <div className="relative z-10 mt-1">
           <div
             className="overflow-hidden"
@@ -53,7 +52,6 @@ export default function HotAndNewCarousel() {
             </div>
           </div>
 
-          {/* 버튼은 overflow-hidden 밖에 */}
           <CarouselNavButton
             onClick={goToPrev}
             direction="prev"
