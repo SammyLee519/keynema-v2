@@ -3,6 +3,7 @@ import { MOCK_MOVIES } from '@/mocks/movie'
 
 import HeroBanner from './components/HeroBanner'
 import HotAndNewCarousel from './components/HotAndNewCarousel'
+import RankingCarousel from './components/RankingCarousel'
 import { HOME_SECTION_TITLES } from './constants/title'
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       <HeroBanner />
 
       <HotAndNewCarousel />
+      <RankingCarousel />
       <MovieCarousel
         title={HOME_SECTION_TITLES.UPCOMING}
         movies={MOCK_MOVIES}
