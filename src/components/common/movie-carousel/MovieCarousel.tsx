@@ -1,14 +1,31 @@
 import { useNavigate } from 'react-router-dom'
 
-import { CarouselNavButton, MovieCard, SectionTitle } from '@/components'
 import { PAGE_PADDING_X, ROUTES } from '@/constants'
 import { useCarousel } from '@/hooks'
-import { MOCK_MOVIES } from '@/mocks/movie'
 import { getStatusBadge } from '@/utils/badge'
 
-import { HOME_SECTION_TITLES } from '../constants'
+import { CarouselNavButton } from '../carousel-nav/CarouselNav'
+import { MovieCard } from '../movie-card/MovieCard'
+import { SectionTitle } from '../section-title/SectionTitle'
 
-export default function UpcomingCarousel() {
+type Movie = {
+  id: number
+  title: string
+  poster_path: string
+  release_date: string
+}
+
+type MovieCarouselProps = {
+  title: string
+  movies: Movie[]
+  showBadge?: boolean
+}
+
+export function MovieCarousel({
+  title,
+  movies,
+  showBadge = false,
+}: MovieCarouselProps) {
   const navigate = useNavigate()
   const { emblaRef, canScrollPrev, canScrollNext, goToPrev, goToNext } =
     useCarousel({
@@ -18,10 +35,7 @@ export default function UpcomingCarousel() {
   return (
     <section>
       <div className="mt-10 px-25">
-        <SectionTitle
-          title={HOME_SECTION_TITLES.UPCOMING}
-          onMoreClick={() => navigate(ROUTES.HOME)}
-        />
+        <SectionTitle title={title} onMoreClick={() => navigate(ROUTES.HOME)} />
       </div>
 
       <div className="relative mt-2">
@@ -31,12 +45,14 @@ export default function UpcomingCarousel() {
           style={{ paddingLeft: PAGE_PADDING_X }}
         >
           <div className="flex gap-5">
-            {MOCK_MOVIES.map((movie) => (
+            {movies.map((movie) => (
               <MovieCard
                 key={movie.id}
                 posterPath={movie.poster_path}
                 title={movie.title}
-                badge={getStatusBadge(movie.release_date)}
+                badge={
+                  showBadge ? getStatusBadge(movie.release_date) : undefined
+                }
                 onClick={() => navigate(ROUTES.MOVIE_DETAIL)}
                 className="h-[300px] w-[200px] shrink-0"
               />

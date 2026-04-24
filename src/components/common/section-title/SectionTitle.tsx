@@ -16,7 +16,7 @@ export function SectionTitle({
 }: SectionTitleProps) {
   return (
     <div className={cn('flex items-center justify-between', className)}>
-      <h3 className="text-2xl font-bold text-white">{title}</h3>
+      <h3 className="text-xl font-bold text-white">{title}</h3>
       {onMoreClick && (
         <div className="flex items-center gap-1">
           <Button variant="text" size="sm" onClick={onMoreClick}>

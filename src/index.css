@@ -2,9 +2,9 @@
 @import 'pretendard/dist/web/static/pretendard.css';
 
 @theme {
-  /* ===== 폰트:프리탠다드 ===== */
-  --font-family-sans:
-    'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* ===== 스페이싱 ===== */
+  --spacing-layout: 100px;
+  --spacing-section: 60px;
 
   /* ===== 컬러 ===== */
   --color-primary: #ff1a66;
@@ -61,7 +61,8 @@
   --color-info-border: rgba(59, 130, 246, 0.4);
 
   /* ===== 타이포그래피 ===== */
-  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-sans:
+    'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --text-banner: 40px; /* 이미지 배너 내부 큰 글씨 - ExtraBold */
   --text-title: 26px; /* 타이틀 - ExtraBold */
