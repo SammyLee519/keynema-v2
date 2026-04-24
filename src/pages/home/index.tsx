@@ -1,5 +1,6 @@
 import HeroBanner from './components/HeroBanner'
 import HotAndNewCarousel from './components/HotAndNewCarousel'
+import UpcomingCarousel from './components/UpcommingCarousel'
 
 export default function HomePage() {
   return (
@@ -7,6 +8,7 @@ export default function HomePage() {
       <HeroBanner />
 
       <HotAndNewCarousel />
+      <UpcomingCarousel />
     </main>
   )
 }
