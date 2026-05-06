@@ -11,7 +11,7 @@ const DevPage = lazy(() => import('@/pages/DevPage'))
 const HomePage = lazy(() => import('@/pages/home'))
 const LoginPage = lazy(() => import('@/pages/LoginPage'))
 const SearchPage = lazy(() => import('@/pages/SearchPage'))
-const MovieDetailPage = lazy(() => import('@/pages/MovieDetailPage'))
+const MovieDetailPage = lazy(() => import('@/pages/movie-details'))
 const MyPage = lazy(() => import('@/pages/MyPage'))
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage.tsx'))
 

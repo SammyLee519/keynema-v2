@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 import filmStrip from '@/assets/subtract.png'
 import { CarouselNavButton, SectionTitle } from '@/components'
-import { PAGE_PADDING_X, ROUTES } from '@/constants'
+import { PAGE_PADDING_X, ROUTE_PATH, ROUTES } from '@/constants'
 import { useCarousel } from '@/hooks'
 import { MOCK_MOVIES } from '@/mocks/movie'
 import { getStatusBadge } from '@/utils/badge'
@@ -46,7 +46,7 @@ export default function HotAndNewCarousel() {
                   backdropPath={movie.backdrop_path}
                   title={movie.title}
                   badge={getStatusBadge(movie.release_date)}
-                  onClick={() => navigate(ROUTES.MOVIE_DETAIL)}
+                  onClick={() => navigate(ROUTE_PATH.movieDetail(movie.id))}
                 />
               ))}
             </div>

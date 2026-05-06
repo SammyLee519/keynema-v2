@@ -5,6 +5,7 @@
   /* ===== 스페이싱 ===== */
   --spacing-layout: 100px;
   --spacing-section: 60px;
+  --spacing-tab: 225px;
 
   /* ===== 컬러 ===== */
   --color-primary: #ff1a66;
@@ -38,6 +39,9 @@
   /* 보더 */
   --color-border-default: #aeb3be;
   --color-border-subtle: rgba(255, 255, 255, 0.3);
+
+  /* divider */
+  --color-border-divider: #939598;
 
   /* 그라데이션 */
   --gradient-section: linear-gradient(-350deg, #ff1a66 0%, #353a42 32%);
@@ -90,6 +94,7 @@
 
   /* ===== 블러 ===== */
   --blur-menu: 25px;
+  --blur-section-box: 10px;
 
   /* ===== 버튼 ===== */
   --btn-height: 32px;
