@@ -8,5 +8,5 @@ export const ROUTES = {
 
 // 동적경로
 export const ROUTE_PATH = {
-  movieDetail: (id: string) => `/movie/${id}`,
+  movieDetail: (id: string | number) => `/movie/${id}`,
 }

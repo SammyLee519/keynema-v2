@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import { CarouselNavButton, SectionTitle } from '@/components'
-import { PAGE_PADDING_X, ROUTES } from '@/constants'
+import { PAGE_PADDING_X, ROUTE_PATH, ROUTES } from '@/constants'
 import { useCarousel } from '@/hooks'
 import { MOCK_MOVIES } from '@/mocks/movie'
 
@@ -30,7 +30,7 @@ export default function RankingCarousel() {
                 rank={index + 1}
                 posterPath={movie.poster_path}
                 title={movie.title}
-                onClick={() => navigate(ROUTES.MOVIE_DETAIL)}
+                onClick={() => navigate(ROUTE_PATH.movieDetail(movie.id))}
               />
             ))}
           </div>

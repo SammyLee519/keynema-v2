@@ -1,27 +1,23 @@
 import { cn } from '@/utils/cn'
 
-type Tab = {
-  value: string
+export type Tab<T extends string> = {
   label: string
+  value: T
 }
 
-type TabMenuProps = {
-  tabs: Tab[]
-  value: string
-  onValueChange: (value: string) => void
+type TabMenuProps<T extends string> = {
+  tabs: Tab<T>[]
+  value: T
+  onValueChange: (value: T) => void
   className?: string
 }
 
-export function TabMenu({
+export function TabMenu<T extends string>({
   tabs,
   value,
   onValueChange,
   className,
-}: TabMenuProps) {
-  const handleClick = (value: string) => () => {
-    onValueChange(value)
-  }
-
+}: TabMenuProps<T>) {
   return (
     <div role="tablist" className="flex">
       {tabs.map((tab) => {
@@ -32,7 +28,7 @@ export function TabMenu({
             key={tab.value}
             role="tab"
             aria-selected={isSelected}
-            onClick={handleClick(tab.value)}
+            onClick={() => onValueChange(tab.value)}
             className={cn(
               // 모바일 기본
               'mr-2 rounded-full border border-border-subtle px-4 py-2 text-xs transition-colors',
