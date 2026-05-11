@@ -1,4 +1,5 @@
 import fallback from '@/assets/fallback.png'
+import { TMDB_IMAGE_BASE_URL, TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
 
 type HotAndNewCardProps = {
   backdropPath: string
@@ -23,7 +24,7 @@ export default function HotAndNewCard({
       className="relative h-[280px] w-[458px] shrink-0 overflow-hidden rounded-lg"
     >
       <img
-        src={backdropPath}
+        src={`${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE.BACKDROP}${backdropPath}`}
         alt={title}
         className="h-full w-full object-cover"
         onError={handleError}

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import { PAGE_PADDING_X, ROUTES } from '@/constants'
+import { TMDB_IMAGE_BASE_URL, TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
 import { useCarousel } from '@/hooks'
 import { getStatusBadge } from '@/utils/badge'
 
@@ -48,7 +49,7 @@ export function MovieCarousel({
             {movies.map((movie) => (
               <MovieCard
                 key={movie.id}
-                posterPath={movie.poster_path}
+                posterPath={`${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE.POSTER}${movie.poster_path}`}
                 title={movie.title}
                 badge={
                   showBadge ? getStatusBadge(movie.release_date) : undefined

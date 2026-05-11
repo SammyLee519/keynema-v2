@@ -3,14 +3,19 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 import fallback from '@/assets/fallback.png'
+import { Spinner } from '@/components'
 import { ROUTES } from '@/constants'
+import { TMDB_IMAGE_BASE_URL, TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
 import { useCarousel } from '@/hooks'
+import { useNowPlayingList } from '@/hooks/useMovieList'
 import { MOCK_MOVIES } from '@/mocks/movie'
 import { cn } from '@/utils/cn'
 
-// TODO: API 연결 예정
-
 export default function HeroBanner() {
+  const { data, error, isLoading } = useNowPlayingList()
+
+  const movies = data?.results.slice(0, 6) ?? []
+
   const navigate = useNavigate()
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = fallback
@@ -33,11 +38,21 @@ export default function HeroBanner() {
     }
   )
 
+  if (isLoading)
+    return (
+      <div>
+        <Spinner />{' '}
+      </div>
+    )
+  if (error) {
+    ;<div>에러가 발생했습니다.</div>
+  }
+
   return (
     <section className="relative top-5 w-full">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex gap-2">
-          {MOCK_MOVIES.map((movie, index) => {
+          {movies.map((movie, index) => {
             const isActive = selectedIndex === index
 
             const cardStyle = isActive
@@ -54,7 +69,7 @@ export default function HeroBanner() {
                 )}
               >
                 <img
-                  src={movie.backdrop_path}
+                  src={`${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE.BACKDROP}${movie.backdrop_path}`}
                   alt={movie.title}
                   className="h-full w-full object-cover"
                   loading="lazy"

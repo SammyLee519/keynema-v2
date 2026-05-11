@@ -1,17 +1,31 @@
 import { useNavigate } from 'react-router-dom'
 
-import { CarouselNavButton, SectionTitle } from '@/components'
+import { CarouselNavButton, SectionTitle, Spinner } from '@/components'
 import { PAGE_PADDING_X, ROUTE_PATH, ROUTES } from '@/constants'
 import { useCarousel } from '@/hooks'
-import { MOCK_MOVIES } from '@/mocks/movie'
+import { useTopRatedList } from '@/hooks/useMovieList'
 
 import { HOME_SECTION_TITLES } from '../constants/title'
 import RankingCard from './RankingCard'
 
 export default function RankingCarousel() {
+  const { data, error, isLoading } = useTopRatedList()
+  const topRatedMovies = data?.results ?? []
+
   const navigate = useNavigate()
   const { emblaRef, canScrollPrev, canScrollNext, goToPrev, goToNext } =
     useCarousel({ options: { loop: false } })
+
+  if (isLoading) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    )
+  }
+  if (error) {
+    return <div>에러가 발생했습니다.</div>
+  }
 
   return (
     <>
@@ -24,7 +38,7 @@ export default function RankingCarousel() {
       <section className="relative">
         <div className="overflow-hidden pl-layout" ref={emblaRef}>
           <div className="flex gap-7">
-            {MOCK_MOVIES.slice(0, 10).map((movie, index) => (
+            {topRatedMovies.slice(0, 10).map((movie, index) => (
               <RankingCard
                 key={movie.id}
                 rank={index + 1}
