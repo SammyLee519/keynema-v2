@@ -1,4 +1,4 @@
-import fallback from '@/assets/fallback.png'
+import { FALLBACK_IMAGE } from '@/constants/image'
 import { TMDB_IMAGE_BASE_URL, TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
 
 type HotAndNewCardProps = {
@@ -15,7 +15,7 @@ export default function HotAndNewCard({
   onClick,
 }: HotAndNewCardProps) {
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = fallback
+    e.currentTarget.src = FALLBACK_IMAGE
   }
 
   return (

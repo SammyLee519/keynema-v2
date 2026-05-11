@@ -2,14 +2,14 @@ import Autoplay from 'embla-carousel-autoplay'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
-import fallback from '@/assets/fallback.png'
 import { Spinner } from '@/components'
-import { ROUTES } from '@/constants'
-import { TMDB_IMAGE_BASE_URL, TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
+import { ROUTE_PATH } from '@/constants'
+import { FALLBACK_IMAGE } from '@/constants/image'
+import { TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
 import { useCarousel } from '@/hooks'
 import { useNowPlayingList } from '@/hooks/useMovieList'
-import { MOCK_MOVIES } from '@/mocks/movie'
 import { cn } from '@/utils/cn'
+import { getTMDBImageUrl } from '@/utils/getTMDBImageUrl'
 
 export default function HeroBanner() {
   const { data, error, isLoading } = useNowPlayingList()
@@ -18,7 +18,7 @@ export default function HeroBanner() {
 
   const navigate = useNavigate()
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = fallback
+    e.currentTarget.src = FALLBACK_IMAGE
   }
   const { emblaRef, selectedIndex, goToPrev, goToNext, scrollTo } = useCarousel(
     {
@@ -41,12 +41,10 @@ export default function HeroBanner() {
   if (isLoading)
     return (
       <div>
-        <Spinner />{' '}
+        <Spinner />
       </div>
     )
-  if (error) {
-    ;<div>에러가 발생했습니다.</div>
-  }
+  if (error) return <div>에러가 발생했습니다.</div>
 
   return (
     <section className="relative top-5 w-full">
@@ -62,14 +60,17 @@ export default function HeroBanner() {
             return (
               <div
                 key={movie.id}
-                onClick={() => navigate(ROUTES.MOVIE_DETAIL)}
+                onClick={() => navigate(ROUTE_PATH.movieDetail(movie.id))}
                 className={cn(
                   'relative aspect-16/7 w-[1254px] shrink-0 overflow-hidden rounded-4xl transition-all',
                   cardStyle
                 )}
               >
                 <img
-                  src={`${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE.BACKDROP}${movie.backdrop_path}`}
+                  src={getTMDBImageUrl(
+                    movie.backdrop_path,
+                    TMDB_IMAGE_SIZE.BACKDROP
+                  )}
                   alt={movie.title}
                   className="h-full w-full object-cover"
                   loading="lazy"
@@ -108,7 +109,7 @@ export default function HeroBanner() {
 
       {/* 닷 인디케이터 */}
       <div className="mt-8 flex items-center justify-center gap-2">
-        {MOCK_MOVIES.map((_, index) => (
+        {movies.map((_, index) => (
           <button
             key={index}
             onClick={() => scrollTo(index)}
