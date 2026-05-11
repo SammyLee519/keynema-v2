@@ -37,7 +37,7 @@ export default function MovieSpoiler({
           “{tagline}”
         </blockquote>
       )}
-      <h3 className="mb-5 text-banner font-bold">🎬 {title} 스포일러</h3>
+      <h3 className="py-5 text-banner font-bold">🎬 {title} 스포일러</h3>
       <div>
         <Button
           variant="text"

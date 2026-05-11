@@ -2,17 +2,18 @@ import type { TMDBWatchProvider, TMDBWatchProviders } from '@/types/tmdb'
 
 import PageSection from '@/components/layout/PageSection'
 import { OTT_PROVIDER_MAP } from '@/constants/ottProviders'
-import { TMDB_IMAGE_BASE_URL } from '@/constants/tmdbImg'
+import { TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
+import { getTMDBImageUrl } from '@/utils/getTMDBImageUrl'
 
 import OTTCard from './OTTCard'
 
 type MovieOTTProps = {
-  provider: TMDBWatchProviders
+  provider?: TMDBWatchProviders
 }
 
 export default function MovieOTT({ provider }: MovieOTTProps) {
   const DEFAULT_REGION = 'KR'
-  const streamingByRegion = provider.results[DEFAULT_REGION]
+  const streamingByRegion = provider?.results[DEFAULT_REGION]
 
   const providerMap = new Map<number, TMDBWatchProvider>()
 
@@ -28,6 +29,16 @@ export default function MovieOTT({ provider }: MovieOTTProps) {
 
   const allProviders = Array.from(providerMap.values())
 
+  if (allProviders.length === 0) {
+    return (
+      <PageSection className="flex items-center justify-center">
+        <p className="mt-4 text-right text-sm text-white/40">
+          이용 가능한 제휴사가 없습니다.
+        </p>
+      </PageSection>
+    )
+  }
+
   return (
     <PageSection>
       <div className="flex flex-col py-4">
@@ -38,7 +49,7 @@ export default function MovieOTT({ provider }: MovieOTTProps) {
             <div key={item.provider_id}>
               <OTTCard
                 name={item.provider_name}
-                logoPath={`${TMDB_IMAGE_BASE_URL}/w200${item.logo_path}`}
+                logoPath={getTMDBImageUrl(item.logo_path, TMDB_IMAGE_SIZE.LOGO)}
                 href={providerInfo?.href ?? streamingByRegion?.link ?? ''}
                 price={`이용권 ${providerInfo?.price}원~`}
               />

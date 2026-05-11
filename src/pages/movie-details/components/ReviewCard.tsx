@@ -7,6 +7,15 @@ type ReviewCardProps = {
 }
 
 export default function ReviewCard({ reviews }: ReviewCardProps) {
+  if (reviews.length === 0) {
+    return (
+      <div className="flex flex-col items-center gap-2 py-12 text-white/50">
+        <p>아직 작성된 리뷰가 없습니다.</p>
+        <p className="text-sm">첫 번째 리뷰를 남겨보세요!</p>
+      </div>
+    )
+  }
+
   return (
     <div>
       <h3 className="mb-4 font-semibold text-body text-white/70">

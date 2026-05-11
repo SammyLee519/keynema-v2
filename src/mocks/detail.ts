@@ -1,4 +1,4 @@
-import type { TMDBImge, TMDBMovieDetail } from '@/types/tmdb'
+import type { TMDBImages, TMDBMovieDetail } from '@/types/tmdb'
 
 import { TMDB_IMAGE_BASE_URL } from '@/constants/tmdbImg'
 
@@ -69,7 +69,7 @@ export const MOCK_CREDITS = {
   ],
 }
 
-export const MOCK_IMAGES: TMDBImge = {
+export const MOCK_IMAGES: TMDBImages = {
   backdrops: [
     {
       aspect_ratio: 1.778,
