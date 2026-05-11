@@ -5,12 +5,13 @@ import { getTMDBImageUrl } from '@/utils/getTMDBImageUrl'
 
 type MovieInfoProps = {
   detail: TMDBMovieDetail
-  credits: TMDBMovieCredits
+  credits?: TMDBMovieCredits
 }
 
 export default function MovieInfo({ detail, credits }: MovieInfoProps) {
-  const { crew, cast } = credits
   const { poster_path, title, production_countries, overview } = detail
+  const crew = credits?.crew ?? []
+  const cast = credits?.cast ?? []
 
   const directors =
     crew
@@ -45,7 +46,7 @@ export default function MovieInfo({ detail, credits }: MovieInfoProps) {
         {/* 정보 */}
         <div className="flex flex-1 flex-col gap-3">
           {infoItems.map(({ label, value }) => (
-            <div key={value} className="flex gap-3 text-xsmall">
+            <div key={label} className="flex gap-3 text-xsmall">
               <span className="min-w-15 font-bold">{label}</span>
               <span className="flex-1 text-white/80">{value}</span>
             </div>

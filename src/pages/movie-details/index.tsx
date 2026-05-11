@@ -1,12 +1,18 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-import { TabMenu } from '@/components'
+import { Spinner, TabMenu } from '@/components'
 import { TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
-import { MOCK_CREDITS, MOCK_DETAIL, MOCK_IMAGES } from '@/mocks/detail'
-import { MOCK_OTT } from '@/mocks/ott'
+import {
+  useMovieCredit,
+  useMovieDetail,
+  useMovieImages,
+  useMovieWatchProviders,
+} from '@/hooks/useMovieDetail'
 import { MOCK_SPOILER_SUMMARY } from '@/mocks/spoiler'
 import { getStatusBadge } from '@/utils/badge'
 import { getTMDBImageUrl } from '@/utils/getTMDBImageUrl'
+import { showToast } from '@/utils/toast'
 
 import MovieInfo from './components/MovieInfo'
 import MovieOTT from './components/MovieOTT'
@@ -20,31 +26,49 @@ import {
 
 export default function MovieDetailPage() {
   // TODO: API 연결 예정
-  const detail = MOCK_DETAIL
-  const credits = MOCK_CREDITS
-  const providers = MOCK_OTT
-  const images = MOCK_IMAGES
+  const { id } = useParams()
+  const movieId = Number(id)
+  const { data: detail, isLoading, isError } = useMovieDetail(Number(movieId))
+  const { data: credits, isLoading: isCreditsLoading } = useMovieCredit(
+    Number(movieId)
+  )
+  const { data: images } = useMovieImages(Number(movieId))
+  const { data: providers } = useMovieWatchProviders(Number(movieId))
   const summary = MOCK_SPOILER_SUMMARY
-
-  const {
-    title,
-    release_date,
-    runtime,
-    genres,
-    production_countries,
-    backdrop_path,
-    vote_average,
-    tagline,
-  } = detail
 
   const [activeTab, setActiveTab] = useState<DetailTabValue>(
     DETAIL_TAB_VALUES.INFO
   )
 
+  if (isLoading || isCreditsLoading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    )
+  if (isError || !detail) {
+    showToast.error('에러가 발생했습니다.')
+
+    return <div>에러가 발생했습니다.</div>
+  }
+
+  const {
+    title,
+    genres,
+    vote_average,
+    production_countries,
+    backdrop_path,
+    release_date,
+    tagline,
+    runtime,
+  } = detail
+
   const genreNames = genres.map((g) => g.name).join(', ')
   const countryNames = production_countries.map((c) => c.name).join(', ')
   const spoilerBackdropPath = getTMDBImageUrl(
-    images.backdrops.at(1)?.file_path ?? images.backdrops[0]?.file_path,
+    images?.backdrops.at(1)?.file_path ??
+      images?.backdrops[0]?.file_path ??
+      backdrop_path,
     TMDB_IMAGE_SIZE.BACKDROP
   )
 
