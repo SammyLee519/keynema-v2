@@ -1,3 +1,5 @@
+import { TMDB_IMAGE_BASE_URL, TMDB_IMAGE_SIZE } from '@/constants/tmdbImg'
+
 import { RANKING_OFFSET } from '../constants/rankingOffset'
 
 type RankingCardProps = {
@@ -33,7 +35,7 @@ export default function RankingCard({
 
       {/* 포스터 */}
       <img
-        src={posterPath}
+        src={`${TMDB_IMAGE_BASE_URL}/${TMDB_IMAGE_SIZE.POSTER}${posterPath}`}
         alt={title}
         loading="lazy"
         className="absolute bottom-4 z-10 h-[200px] w-[140px] rounded-md object-cover shadow-lg"

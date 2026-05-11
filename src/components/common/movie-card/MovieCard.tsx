@@ -1,6 +1,6 @@
 import { StarIcon } from 'lucide-react'
 
-import fallback from '@/assets/fallback.png'
+import { FALLBACK_IMAGE } from '@/constants/image'
 import { cn } from '@/utils/cn'
 
 type MovieCardProps = {
@@ -21,7 +21,7 @@ export function MovieCard({
   className,
 }: MovieCardProps) {
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = fallback
+    e.currentTarget.src = FALLBACK_IMAGE
   }
 
   return (

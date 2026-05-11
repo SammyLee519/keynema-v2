@@ -1,21 +1,35 @@
 import { useNavigate } from 'react-router-dom'
 
 import filmStrip from '@/assets/subtract.png'
-import { CarouselNavButton, SectionTitle } from '@/components'
+import { CarouselNavButton, SectionTitle, Spinner } from '@/components'
 import { PAGE_PADDING_X, ROUTE_PATH, ROUTES } from '@/constants'
 import { useCarousel } from '@/hooks'
-import { MOCK_MOVIES } from '@/mocks/movie'
+import { usePopularList } from '@/hooks/useMovieList'
 import { getStatusBadge } from '@/utils/badge'
 
 import { HOME_SECTION_TITLES } from '../constants/title'
 import HotAndNewCard from './HotAndNewCard'
 
 export default function HotAndNewCarousel() {
+  const { data, error, isLoading } = usePopularList()
+  const popularMovies = data?.results ?? []
+
   const navigate = useNavigate()
   const { emblaRef, canScrollPrev, canScrollNext, goToPrev, goToNext } =
     useCarousel({
       options: { loop: false },
     })
+
+  if (isLoading) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    )
+  }
+  if (error) {
+    ;<div>에러가 발생했습니다.</div>
+  }
 
   return (
     <>
@@ -40,7 +54,7 @@ export default function HotAndNewCarousel() {
             style={{ paddingLeft: PAGE_PADDING_X }}
           >
             <div className="flex gap-5">
-              {MOCK_MOVIES.map((movie) => (
+              {popularMovies.map((movie) => (
                 <HotAndNewCard
                   key={movie.id}
                   backdropPath={movie.backdrop_path}
