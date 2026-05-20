@@ -38,3 +38,6 @@ chromatic-build-*.xml
 chromatic-diagnostics.json
 
 vite-env.d.ts
+
+supabase/.temp
+supabase/linked-project.json
