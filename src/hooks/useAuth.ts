@@ -6,11 +6,13 @@ import { useAuthStore } from '../store/authStore'
 
 export const useAuth = () => {
   const { user, setUser } = useAuthStore()
+  const setIsLoading = useAuthStore((state) => state.setIsLoading)
 
   useEffect(() => {
     // 앱 시작 시 현재 로그인 상태 확인
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
+      setIsLoading(false)
     })
 
     // 로그인/로그아웃 상태 변화
