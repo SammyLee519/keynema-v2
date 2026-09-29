@@ -4,6 +4,7 @@ export const ROUTES = {
   MOVIE_DETAIL: '/movie/:id',
   MY_PAGE: '/my',
   LOGIN: '/login',
+  SIGNUP: '/signup',
 }
 
 // 동적경로
