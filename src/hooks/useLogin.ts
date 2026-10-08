@@ -12,7 +12,7 @@ export const useLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -76,7 +76,7 @@ export const useLogin = () => {
     email,
     password,
     error,
-    loading,
+    isLoading,
     handleEmailChange,
     handlePasswordChange,
     handleLoginSubmit,

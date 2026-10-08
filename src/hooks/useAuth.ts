@@ -23,7 +23,7 @@ export const useAuth = () => {
     })
 
     return () => subscription.unsubscribe()
-  }, [])
+  }, [setUser, setIsLoading])
 
   const signInWithGoogle = async () => {
     await supabase.auth.signInWithOAuth({
@@ -50,7 +50,23 @@ export const useAuth = () => {
   }
 
   const signOut = async () => {
-    await supabase.auth.signOut()
+    try {
+      const { error } = await supabase.auth.signOut()
+
+      if (error) {
+        throw error
+      }
+
+      return { success: true }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('로그아웃 실패:', error)
+
+      return {
+        success: false,
+        error,
+      }
+    }
   }
 
   return { user, signInWithGoogle, signInWithEmail, signUpWithEmail, signOut }

@@ -11,7 +11,7 @@ type HeaderProps = {
 
 export default function Header({ onMenuToggle }: HeaderProps) {
   return (
-    <header className="fixed top-0 right-0 left-0 flex h-18 items-center justify-between px-[100px]">
+    <header className="fixed top-0 right-0 left-0 z-50 flex h-18 items-center justify-between px-layout">
       <div className="flex gap-20">
         <Link to={ROUTES.HOME}>
           <img src={logo} alt="keynema-logo" width={128} height={50} />

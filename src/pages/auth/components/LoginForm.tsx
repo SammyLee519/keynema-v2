@@ -9,7 +9,7 @@ export default function LoginForm() {
     email,
     password,
     error,
-    loading,
+    isLoading,
     handleEmailChange,
     handlePasswordChange,
     handleLoginSubmit,
@@ -35,7 +35,7 @@ export default function LoginForm() {
           onChange={handlePasswordChange}
           required
         />
-        <Button variant="primary" isLoading={loading} className="p-2">
+        <Button variant="primary" isLoading={isLoading} className="p-2">
           로그인
         </Button>
         {error && <p>{error}</p>}
