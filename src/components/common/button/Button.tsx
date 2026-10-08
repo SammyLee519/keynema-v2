@@ -4,7 +4,7 @@ import { Spinner } from '@/components'
 import { cn } from '@/utils/cn'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center transition-all duration-200 disabled-opacity-50 disabled:cursor-not-allowed',
+  'inline-flex items-center justify-center transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
